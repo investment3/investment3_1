@@ -1,121 +1,132 @@
-#계좌정보 가져오기 8로시작되는걸로 가져와야함
-from PyQt5.QtCore import *         # 쓰레드 함수를 불러온다.
-from kiwoom import Kiwoom          # 로그인을 위한 클래스
-from PyQt5.QtWidgets import *      #PyQt import
+from PyQt5.QtCore import *           # eventloop/스레드를 사용 할 수 있는 함수 가져옴.
+from kiwoom import Kiwoom            # 로그인을 위한 클래스
+from PyQt5.QtWidgets import *        # PyQt import
+from PyQt5.QtTest import *           # 시간관련 함수
+from datetime import datetime, timedelta    # 특정 일자를 조회
 
 
-class Thread1(QThread):
-    def __init__(self, parent):   # 부모의 윈도우 창을 가져올 수 있다.
-        super().__init__(parent)  # 부모의 윈도우 창을 초기화 한다.
-        self.parent = parent      # 부모의 윈도우를 사용하기 위한 조건
-
+class Thread2(QThread):
+    def __init__(self, parent):     # 부모의 윈도우 창을 가져올 수 있다.
+        super().__init__(parent)    # 부모의 윈도우 창을 초기화 한다.
+        self.parent = parent        # 부모의 윈도우를 사용하기 위한 조건
 
         ################## 키움서버 함수를 사용하기 위해서 kiwoom의 능력을 상속 받는다.
         self.k = Kiwoom()
-        ##################
-
         ################## 사용되는 변수
-        self.Acc_Screen = "1000"         # 계좌평가잔고내역을 받기위한 스크린
+        self.Find_down_Screen = "1200"  # 계좌평가잔고내역을 받기위한 스크린
+        self.code_in_all = None  # 1600개 코드 중 1개 코드, 쌓이지 않고 계속 갱신
 
         ###### 슬롯
         self.k.kiwoom.OnReceiveTrData.connect(self.trdata_slot)  # 내가 알고 있는 Tr 슬롯에다 특정 값을 던져 준다.
+
         ###### EventLoop
         self.detail_account_info_event_loop = QEventLoop()  # 계좌 이벤트루프
-        ###### 계좌정보 가져오기
-        self.getItemList()               # 종목 이름 받아오기
-        self.detail_acount_mystock()     # 계좌평가잔고내역 가져오기
+
+        ###### 기관외국인 평균가 가져오기
+        self.C_K_F_class()
 
 
-    def getItemList(self):
-        marketList = ["0", "10"]
+        ###### 결과 붙이기(gui)
+        column_head = ["종목코드", "종목명", "위험도"]
+        colCount = len(column_head)
+        rowCount = len(self.k.acc_portfolio)
+        self.parent.Danger_wd.setColumnCount(colCount)  # 행 갯수
+        self.parent.Danger_wd.setRowCount(rowCount)  # 열 갯수 (종목 수)
+        self.parent.Danger_wd.setHorizontalHeaderLabels(column_head)  # 행의 이름 삽입
+        index2 = 0
+        for k in self.k.acc_portfolio.keys():
+            self.parent.Danger_wd.setItem(index2, 0, QTableWidgetItem(str(k)))
+            self.parent.Danger_wd.setItem(index2, 1, QTableWidgetItem(self.k.acc_portfolio[k]["종목명"]))
+            self.parent.Danger_wd.setItem(index2, 2, QTableWidgetItem(self.k.acc_portfolio[k]["위험도"]))
+            index2 += 1
 
-        for market in marketList:
-            codeList = self.k.kiwoom.dynamicCall("GetCodeListByMarket(QString)", market).split(";")[:-1]
 
-            for code in codeList:
-                name = self.k.kiwoom.dynamicCall("GetMasterCodeName(QString)", code)
-                self.k.All_Stock_Code.update({code: {"종목명": name}})
+    def C_K_F_class(self):
 
-    def detail_acount_mystock(self, sPrevNext="0"):
+        code_list = []
 
-        print("계좌평가잔고내역 조회")
-        account = self.parent.accComboBox.currentText()  # 콤보박스 안에서 가져오는 부분
-        self.account_num = account
-        print("최종 선택 계좌는 %s" % self.account_num)
+        for code in self.k.acc_portfolio.keys():
+            code_list.append(code)
 
-        self.k.kiwoom.dynamicCall("SetInputValue(String, String)", "계좌번호", account)
-        self.k.kiwoom.dynamicCall("SetInputValue(String, String)", "비밀번호", "0000")  # 모의투자 0000
-        self.k.kiwoom.dynamicCall("SetInputValue(String, String)", "비밀번호입력매체구분", "00")
-        self.k.kiwoom.dynamicCall("SetInputValue(String, String)", "조회구분", "2")
-        self.k.kiwoom.dynamicCall("CommRqData(String, String, int, String)", "계좌평가잔고내역요청", "opw00018", sPrevNext, self.Acc_Screen)
-        self.detail_account_info_event_loop.exec_()
+        print("계좌 종목 개수 %s" % (code_list))
+
+        #self.parent.progressBar5.setMaximum(len(code_list) - 1) /차 후 설명 드리겠습니다.
+
+        for idx, code in enumerate(code_list):
+            #self.parent.progressBar5.setValue(idx) / 차 후 설명드리겠습니다.
+
+            QTest.qWait(1000)
+
+            self.k.kiwoom.dynamicCall("DisconnectRealData(QString)", self.Find_down_Screen)  # 해당 스크린을 끊고 다시 시작
+
+            self.code_in_all = code  # 종목코드 선언 (중간에 코드 정보 받아오기 위해서)
+            print("%s / %s : 종목 검사 중 코드이름 : %s." % (idx + 1, len(code_list), self.code_in_all))
+
+            date_today = datetime.today().strftime("%Y%m%d")
+            date_prev = datetime.today() - timedelta(10)  # 넉넉히 10일전의 데이터를 받아온다. 또는 20일이상 데이터도 필요
+            date_prev = date_prev.strftime("%Y%m%d")
+
+            self.k.kiwoom.dynamicCall("SetInputValue(QString, QString)", "종목코드", code)
+            self.k.kiwoom.dynamicCall("SetInputValue(QString, QString)", "시작일자", date_prev)
+            self.k.kiwoom.dynamicCall("SetInputValue(QString, QString)", "종료일자", date_today)
+            self.k.kiwoom.dynamicCall("SetInputValue(QString, QString)", "기관추정단가구분", "1")
+            self.k.kiwoom.dynamicCall("SetInputValue(QString, QString)", "외인추정단가구분", "1")
+            self.k.kiwoom.dynamicCall("CommRqData(String, String, int, String)", "종목별기관매매추이요청2", "opt10045", "0", self.Find_down_Screen)
+            self.detail_account_info_event_loop.exec_()
+
+    def kigwan_meme_dong2(self, a, c):  # a. 기관일별순매수량, b. 종가/기관/외국인 평균가, c. 외국인일별순매수량, d. 등락률
+
+        a = a[0:4]
+        c = c[0:4]
+        print(a)
+        # a = sum(a, [])
+        # c = sum(c, [])
+
+
+
+        if a[0] < 0 and a[1] < 0 and a[2] < 0 and a[3] < 0 and c[0] < 0 and c[1] < 0 and c[2] < 0 and c[3] < 0:
+            self.k.acc_portfolio[self.code_in_all].update({"위험도": "손절"})
+
+        elif a[0] < 0 and a[1] < 0 and a[2] < 0 and c[0] < 0 and c[1] < 0 and c[2] < 0:
+            self.k.acc_portfolio[self.code_in_all].update({"위험도": "주의"})
+
+        elif a[0] < 0 and a[1] < 0 and c[0] < 0 and c[1] < 0:
+            self.k.acc_portfolio[self.code_in_all].update({"위험도": "관심"})
+
+        else:
+            self.k.acc_portfolio[self.code_in_all].update({"위험도": "낮음"})
 
 
     def trdata_slot(self, sScrNo, sRQName, sTrCode, sRecordName, sPrevNext):
 
-        if sRQName == "계좌평가잔고내역요청":
+        if sRQName == "종목별기관매매추이요청2":
 
-            column_head = ["종목번호", "종목명", "보유수량", "매입가", "현재가", "평가손익", "수익률(%)"]
-            colCount = len(column_head)
-            rowCount = self.k.kiwoom.dynamicCall("GetRepeatCnt(QString, QString)", sTrCode, sRQName)
-            self.parent.stocklistTableWidget_2.setColumnCount(colCount)                 # 행 갯수
-            self.parent.stocklistTableWidget_2.setRowCount(rowCount)                    # 열 갯수 (종목 수)
-            self.parent.stocklistTableWidget_2.setHorizontalHeaderLabels(column_head)   # 행의 이름 삽입
+            cnt2 = self.k.kiwoom.dynamicCall("GetRepeatCnt(QString, QString)", sTrCode, sRQName)  # 10일치 이상을 하려면 이부분에 10일치 이상데이터 필요
 
-            print("계좌에 들어있는 종목 수 %s" % rowCount)
+            self.calcul2_data = []
+            self.calcul2_data2 = []
+            self.calcul2_data3 = []
+            self.calcul2_data4 = []
 
-            totalBuyingPrice = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, 0, "총매입금액"))
-            currentTotalPrice = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, 0, "총평가금액"))
-            balanceAsset = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, 0, "추정예탁자산"))
-            totalEstimateProfit = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, 0, "총평가손익금액"))
-            total_profit_loss_rate = float(self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, 0, "총수익률(%)"))
+            for i in range(cnt2):  #
 
-            #################################### 텍스트 라벨에 집어 넣기
+                Kigwan_meme = (self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, i, "기관일별순매매수량"))
+                Kigwan_meme_ave = (self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, 0, "기관추정평균가"))
+                Forgin_meme = (self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, i, "외인일별순매매수량"))
+                Forgin_meme_ave = (self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, 0, "외인추정평균가"))
+                percentage = (self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, i, "등락율"))
+                Jongga = (self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, i, "종가"))
 
-            self.parent.label_1.setText(str(totalBuyingPrice))
-            self.parent.label_2.setText(str(currentTotalPrice))
-            self.parent.label_3.setText(str(balanceAsset))
-            self.parent.label_4.setText(str(totalEstimateProfit))
-            self.parent.label_5.setText(str(total_profit_loss_rate))
+                self.calcul2_data.append(int(Kigwan_meme.strip()))
+                self.calcul2_data2.append(abs(int(Jongga.strip())))
+                self.calcul2_data2.append(abs(int(Kigwan_meme_ave.strip())))
+                self.calcul2_data2.append(abs(int(Forgin_meme_ave.strip())))
+                self.calcul2_data3.append(int(Forgin_meme.strip()))
+                self.calcul2_data4.append(float(percentage.strip()))
 
-            #################################################################
+                # 여기까지 code의 기관일별순매수량, 외국인일별순매수량, 기관/외국인 평균가, 등락률 정보가 나온다.
+                # self.kigwan_meme_dong2(self.calcul2_data, self.calcul2_data2[0:3], self.calcul2_data3, self.calcul2_data4)
 
+            self.kigwan_meme_dong2(self.calcul2_data, self.calcul2_data3)
 
-            for index in range(rowCount):
-                itemCode = self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "종목번호").strip(" ").strip("A")
-                itemName = self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "종목명")
-                amount = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "보유수량"))
-                buyingPrice = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "매입가"))
-                currentPrice = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "현재가"))
-                estimateProfit = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "평가손익"))
-                profitRate = float(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "수익률(%)"))
-                total_chegual_price = self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "매입금액")
-                total_chegual_price = int(total_chegual_price.strip())
-                possible_quantity = self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, index, "매매가능수량")
-                possible_quantity = int(possible_quantity.strip())
-
-                if itemCode in self.k.acc_portfolio:
-                    pass
-                else:
-                    self.k.acc_portfolio.update({itemCode:{}})      # self.account_stock_dict[code] = {}
-
-                self.k.acc_portfolio[itemCode].update({"종목명": itemName.strip()})
-                self.k.acc_portfolio[itemCode].update({"보유수량": amount})
-                self.k.acc_portfolio[itemCode].update({"매입가": buyingPrice})
-                self.k.acc_portfolio[itemCode].update({"수익률(%)": profitRate})
-                self.k.acc_portfolio[itemCode].update({"현재가": currentPrice})
-                self.k.acc_portfolio[itemCode].update({"매입금액": total_chegual_price})
-                self.k.acc_portfolio[itemCode].update({"매매가능수량": possible_quantity})
-
-                self.parent.stocklistTableWidget_2.setItem(index, 0, QTableWidgetItem(str(itemCode)))
-                self.parent.stocklistTableWidget_2.setItem(index, 1, QTableWidgetItem(str(itemName)))
-                self.parent.stocklistTableWidget_2.setItem(index, 2, QTableWidgetItem(str(amount)))
-                self.parent.stocklistTableWidget_2.setItem(index, 3, QTableWidgetItem(str(buyingPrice)))
-                self.parent.stocklistTableWidget_2.setItem(index, 4, QTableWidgetItem(str(currentPrice)))
-                self.parent.stocklistTableWidget_2.setItem(index, 5, QTableWidgetItem(str(estimateProfit)))
-                self.parent.stocklistTableWidget_2.setItem(index, 6, QTableWidgetItem(str(profitRate)))
-
-            if sPrevNext == "2":
-                self.detail_acount_mystock(sPrevNext="2")  # 다음 페이지가 있으면 전부 검색한다.
-            else:
-                self.detail_account_info_event_loop.exit()  # 끊어 준다.
+            self.detail_account_info_event_loop.exit()
