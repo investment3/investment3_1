@@ -15,6 +15,9 @@ class Kiwoom(QWidget, metaclass=Singleton):       # QMainWindow : PyQt5에서 �
 
         self.kiwoom = QAxWidget('KHOPENAPI.KHOpenAPICtrl.1')       # CLSID
 
+
+
         ################# 전체 공유 데이터
         self.All_Stock_Code = {}            # 코스피, 코스닥 전체 코드넘버 입력
         self.acc_portfolio = {}             # 계좌에 들어있는 종목의 코드, 수익률 등등 입력
+
