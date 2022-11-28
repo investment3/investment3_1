@@ -9,6 +9,7 @@ class Thread2(QThread):
     def __init__(self, parent):     # 부모의 윈도우 창을 가져올 수 있다.
         super().__init__(parent)    # 부모의 윈도우 창을 초기화 한다.
         self.parent = parent        # 부모의 윈도우를 사용하기 위한 조건
+        self.parent = parent        # 부모의 윈도우를 사용하기 위한 조건
 
         ################## 키움서버 함수를 사용하기 위해서 kiwoom의 능력을 상속 받는다.
         self.k = Kiwoom()

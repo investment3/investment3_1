@@ -4,6 +4,8 @@
     <list default="true" id="4a727932-7b82-4b60-b3cb-3c269d8f0205" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qthread_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qthread_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kiwoom.py" beforeDir="false" afterPath="$PROJECT_DIR$/kiwoom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture_0425.py" beforeDir="false" afterPath="$PROJECT_DIR$/lecture_0425.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +30,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/jm/OneDrive/바탕 화면/문서/깃헙공유파일/investment3_1"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/pythonProject_aift&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.lecture_0425">
     <configuration name="kiwoom" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject_aift" />
