@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>821</width>
-    <height>1058</height>
+    <width>824</width>
+    <height>1189</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -148,11 +148,11 @@
      <string>계좌 관리</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="stocklistTableWidget_3">
+   <widget class="QTableWidget" name="Danger_wd">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>70</y>
+      <x>440</x>
+      <y>60</y>
       <width>311</width>
       <height>461</height>
      </rect>
@@ -162,9 +162,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>560</y>
-      <width>391</width>
-      <height>351</height>
+      <y>570</y>
+      <width>511</width>
+      <height>381</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -172,22 +172,22 @@
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>자동매매 종목 선정</string>
      </attribute>
      <widget class="QTableWidget" name="buylast">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>391</width>
-        <height>321</height>
+        <width>511</width>
+        <height>371</height>
        </rect>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>자동매매 조건</string>
      </attribute>
     </widget>
    </widget>
@@ -197,7 +197,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>821</width>
+     <width>824</width>
      <height>26</height>
     </rect>
    </property>
