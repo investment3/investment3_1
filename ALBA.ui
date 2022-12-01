@@ -36,7 +36,7 @@
       <x>10</x>
       <y>30</y>
       <width>421</width>
-      <height>191</height>
+      <height>131</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -129,9 +129,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>260</y>
+      <y>170</y>
       <width>411</width>
-      <height>271</height>
+      <height>231</height>
      </rect>
     </property>
    </widget>
@@ -152,9 +152,9 @@
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>60</y>
+      <y>40</y>
       <width>311</width>
-      <height>461</height>
+      <height>361</height>
      </rect>
     </property>
    </widget>
@@ -162,9 +162,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>570</y>
-      <width>511</width>
-      <height>381</height>
+      <y>410</y>
+      <width>421</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -179,9 +179,58 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>511</width>
-        <height>371</height>
+        <width>421</width>
+        <height>251</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="additmelast">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>250</y>
+        <width>121</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>종목 추가</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Deletcode">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>290</y>
+        <width>121</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>종목삭제</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="searchItemTextEdit2">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>260</y>
+        <width>201</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>260</y>
+        <width>91</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>종목명 입력</string>
       </property>
      </widget>
     </widget>
@@ -190,55 +239,6 @@
       <string>자동매매 조건</string>
      </attribute>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="additemlast">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>960</y>
-      <width>121</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>종목 추가</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Deletecode">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>990</y>
-      <width>121</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>종목 삭제</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>960</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>종목명 입력</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="searchItemTextEdit2">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>960</y>
-      <width>201</width>
-      <height>41</height>
-     </rect>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
