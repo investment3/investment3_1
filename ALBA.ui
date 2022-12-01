@@ -204,19 +204,6 @@
      <string>종목 추가</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Deletecode">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>990</y>
-      <width>121</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>종목 삭제</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -238,6 +225,19 @@
       <width>201</width>
       <height>41</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Deletcode">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>990</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>종목삭제</string>
     </property>
    </widget>
   </widget>
