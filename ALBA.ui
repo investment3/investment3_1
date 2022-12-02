@@ -162,7 +162,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>410</y>
+      <y>450</y>
       <width>421</width>
       <height>351</height>
      </rect>
@@ -239,6 +239,45 @@
       <string>자동매매 조건</string>
      </attribute>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="Load_Stock">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>410</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>불러오기</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Save_Stock">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>410</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>종목저장</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Del_Stock">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>410</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>종목삭제</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

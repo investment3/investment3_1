@@ -1,3 +1,4 @@
+import os
 import sys                        # system specific parameters and functions : 파이썬 스크립트 관리
 from PyQt5.QtWidgets import *     # GUI의 그래픽적 요소를 제어       하단의 terminal 선택, activate py37_32,  pip install pyqt5,   전부다 y
 from PyQt5 import uic             # ui 파일을 가져오기위한 함수
@@ -45,7 +46,14 @@ class Login_Machnine(QMainWindow, QWidget, form_class):       # QMainWindow : Py
         self.k.kiwoom.OnReceiveTrData.connect(self.trdata_slot)           # 키움서버 데이터 받는 곳
         self.additmelast.clicked.connect(self.searchItem2)                # 종목 추가
         self.Deletcode.clicked.connect(self.deltecode)                        # 종목 삭제
-        ####################
+        #################### 부가기능 2: 데이터베이스화하기, 저장,삭제,불러오기
+        self_Getanal_code =[]
+        self.Save_Stock.clicked.connect(self.Save_selected_code)
+        self.Del_Stock.clicked.connect(self.delet_code)
+        self.Load_Stock.clicked.connect(self.Load_code)
+        
+
+
 
     def deltecode(self):
         x = self.buylast.selectedIndexes()  # 리스트로 선택된 행번호와 열번호가 x에 입력된다.
