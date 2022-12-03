@@ -250,7 +250,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>불러오기</string>
+     <string>DB 로드</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Save_Stock">
@@ -263,7 +263,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>종목저장</string>
+     <string>DB저장</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Del_Stock">
@@ -276,7 +276,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>종목삭제</string>
+     <string>DB삭제</string>
     </property>
    </widget>
   </widget>
