@@ -36,13 +36,13 @@ class Login_Machnine(QMainWindow, QWidget, form_class):       # QMainWindow : Py
         ########## 더블 스핀 박스 우측정렬 및 소수점 삭제
 
         self.buy_price.setAlignment(Qt.AlignRight)
-        self.buy_price.setDecimals(0)
+        # self.buy_price.setDecimals(0)
         self.n_o_stock.setAlignment(Qt.AlignRight)
-        self.n_o_stock.setDecimals(0)
+        # self.n_o_stock.setDecimals(0)
         self.profit_price.setAlignment(Qt.AlignRight)
-        self.profit_price.setDecimals(0)
+        # self.profit_price.setDecimals(0)
         self.loss_price.setAlignment(Qt.AlignRight)
-        self.loss_price.setDecimals(0)
+        # self.loss_price.setDecimals(0)
 
 
 
