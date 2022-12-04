@@ -189,9 +189,9 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>510</y>
+      <y>480</y>
       <width>601</width>
-      <height>531</height>
+      <height>491</height>
      </rect>
     </property>
     <property name="title">
@@ -203,7 +203,7 @@
        <x>20</x>
        <y>100</y>
        <width>561</width>
-       <height>401</height>
+       <height>371</height>
       </rect>
      </property>
     </widget>
@@ -251,9 +251,9 @@
     <property name="geometry">
      <rect>
       <x>850</x>
-      <y>510</y>
+      <y>480</y>
       <width>271</width>
-      <height>531</height>
+      <height>491</height>
      </rect>
     </property>
     <property name="title">
@@ -277,7 +277,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>550</y>
+      <y>480</y>
       <width>151</width>
       <height>491</height>
      </rect>
@@ -317,6 +317,12 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="showGroupSeparator" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="maximum">
+      <double>100000000.000000000000000</double>
+     </property>
     </widget>
     <widget class="QLabel" name="label_6">
      <property name="geometry">
@@ -329,16 +335,6 @@
      </property>
      <property name="text">
       <string>매수 수량</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="n_o_stock">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>190</y>
-       <width>121</width>
-       <height>31</height>
-      </rect>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -354,16 +350,6 @@
       <string>익절 가격</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="profit_price">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>270</y>
-       <width>121</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_8">
      <property name="geometry">
       <rect>
@@ -375,16 +361,6 @@
      </property>
      <property name="text">
       <string>손절 가격</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="loss_price">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>350</y>
-       <width>121</width>
-       <height>31</height>
-      </rect>
      </property>
     </widget>
     <widget class="QPushButton" name="additmelast">
@@ -411,6 +387,54 @@
      </property>
      <property name="text">
       <string>종목 삭제</string>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="profit_price">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="showGroupSeparator" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="maximum">
+      <double>100000000.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="n_o_stock">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="showGroupSeparator" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="maximum">
+      <double>100000000.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="loss_price">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>350</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="showGroupSeparator" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="maximum">
+      <double>100000000.000000000000000</double>
      </property>
     </widget>
    </widget>
