@@ -348,6 +348,16 @@
      <string>손절가격</string>
     </property>
    </widget>
+   <widget class="QTextEdit" name="n_o_stock">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>730</y>
+      <width>104</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
