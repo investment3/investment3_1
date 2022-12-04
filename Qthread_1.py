@@ -106,14 +106,14 @@ class Thread1(QThread):
                 self.k.acc_portfolio[itemCode].update({"매입금액": total_chegual_price})
                 self.k.acc_portfolio[itemCode].update({"매매가능수량": possible_quantity})
 
-                self.parent.stocklistTableWidget_2.setItem(index, 0, QTableWidgetItem(str(itemCode)))
-                self.parent.stocklistTableWidget_2.setItem(index, 1, QTableWidgetItem(str(itemName)))
+                self.parent.stocklistTableWidget_2.setItem(index, 0, QTableWidgetItem(str(itemCode))).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                self.parent.stocklistTableWidget_2.setItem(index, 1, QTableWidgetItem(str(itemName))).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 # 천단위 구분 콤마 사용
-                self.parent.stocklistTableWidget_2.setItem(index, 2, QTableWidgetItem(str(format(amount, ","))))
-                self.parent.stocklistTableWidget_2.setItem(index, 3, QTableWidgetItem(str(format(buyingPrice, ","))))
-                self.parent.stocklistTableWidget_2.setItem(index, 4, QTableWidgetItem(str(format(currentPrice, ","))))
-                self.parent.stocklistTableWidget_2.setItem(index, 5, QTableWidgetItem(str(format(estimateProfit, ","))))
-                self.parent.stocklistTableWidget_2.setItem(index, 6, QTableWidgetItem(str(format(profitRate, ","))))
+                self.parent.stocklistTableWidget_2.setItem(index, 2, QTableWidgetItem(str(format(amount, ",")))).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                self.parent.stocklistTableWidget_2.setItem(index, 3, QTableWidgetItem(str(format(buyingPrice, ",")))).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                self.parent.stocklistTableWidget_2.setItem(index, 4, QTableWidgetItem(str(format(currentPrice, ",")))).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                self.parent.stocklistTableWidget_2.setItem(index, 5, QTableWidgetItem(str(format(estimateProfit, ",")))).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                self.parent.stocklistTableWidget_2.setItem(index, 6, QTableWidgetItem(str(format(profitRate, ",")))).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
 
             if sPrevNext == "2":
                 self.detail_acount_mystock(sPrevNext="2")  # 다음 페이지가 있으면 전부 검색한다.
