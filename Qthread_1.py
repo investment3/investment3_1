@@ -71,11 +71,11 @@ class Thread1(QThread):
 
             #################################### 텍스트 라벨에 집어 넣기
 
-            self.parent.label_1.setText(str(totalBuyingPrice))
-            self.parent.label_2.setText(str(currentTotalPrice))
-            self.parent.label_3.setText(str(balanceAsset))
-            self.parent.label_4.setText(str(totalEstimateProfit))
-            self.parent.label_5.setText(str(total_profit_loss_rate))
+            self.parent.label_1.setText(str(format(totalBuyingPrice, ",")))
+            self.parent.label_2.setText(str(format(currentTotalPrice, ",")))
+            self.parent.label_3.setText(str(format(balanceAsset, ",")))
+            self.parent.label_4.setText(str(format(totalEstimateProfit, ",")))
+            self.parent.label_5.setText(str(format(total_profit_loss_rate, ",")))
 
             #################################################################
 
