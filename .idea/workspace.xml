@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a727932-7b82-4b60-b3cb-3c269d8f0205" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ALBA.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ALBA.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Qthread_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Qthread_1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

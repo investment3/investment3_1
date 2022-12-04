@@ -108,11 +108,12 @@ class Thread1(QThread):
 
                 self.parent.stocklistTableWidget_2.setItem(index, 0, QTableWidgetItem(str(itemCode)))
                 self.parent.stocklistTableWidget_2.setItem(index, 1, QTableWidgetItem(str(itemName)))
-                self.parent.stocklistTableWidget_2.setItem(index, 2, QTableWidgetItem(str(amount)))
-                self.parent.stocklistTableWidget_2.setItem(index, 3, QTableWidgetItem(str(buyingPrice)))
-                self.parent.stocklistTableWidget_2.setItem(index, 4, QTableWidgetItem(str(currentPrice)))
-                self.parent.stocklistTableWidget_2.setItem(index, 5, QTableWidgetItem(str(estimateProfit)))
-                self.parent.stocklistTableWidget_2.setItem(index, 6, QTableWidgetItem(str(profitRate)))
+                # 천단위 구분 콤마 사용
+                self.parent.stocklistTableWidget_2.setItem(index, 2, QTableWidgetItem(str(format(amount, ","))))
+                self.parent.stocklistTableWidget_2.setItem(index, 3, QTableWidgetItem(str(format(buyingPrice, ","))))
+                self.parent.stocklistTableWidget_2.setItem(index, 4, QTableWidgetItem(str(format(currentPrice, ","))))
+                self.parent.stocklistTableWidget_2.setItem(index, 5, QTableWidgetItem(str(format(estimateProfit, ","))))
+                self.parent.stocklistTableWidget_2.setItem(index, 6, QTableWidgetItem(str(format(profitRate, ","))))
 
             if sPrevNext == "2":
                 self.detail_acount_mystock(sPrevNext="2")  # 다음 페이지가 있으면 전부 검색한다.
