@@ -145,8 +145,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>460</y>
+      <x>200</x>
+      <y>860</y>
       <width>661</width>
       <height>311</height>
      </rect>
@@ -178,8 +178,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>790</y>
+      <x>60</x>
+      <y>480</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -191,9 +191,9 @@
    <widget class="QTextEdit" name="searchItemTextEdit2">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>780</y>
-      <width>151</width>
+      <x>40</x>
+      <y>510</y>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
@@ -227,8 +227,8 @@
    <widget class="QPushButton" name="Load_Stock">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>450</y>
+      <x>500</x>
+      <y>850</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -240,8 +240,8 @@
    <widget class="QPushButton" name="Save_Stock">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>450</y>
+      <x>600</x>
+      <y>850</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -253,8 +253,8 @@
    <widget class="QPushButton" name="Del_Stock">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>450</y>
+      <x>710</x>
+      <y>850</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -266,8 +266,8 @@
    <widget class="QLabel" name="buy_price">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>850</y>
+      <x>70</x>
+      <y>580</y>
       <width>64</width>
       <height>15</height>
      </rect>
@@ -279,8 +279,8 @@
    <widget class="QLabel" name="profit_price">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>970</y>
+      <x>70</x>
+      <y>780</y>
       <width>64</width>
       <height>15</height>
      </rect>
@@ -292,8 +292,8 @@
    <widget class="QLabel" name="loss_price">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>1030</y>
+      <x>70</x>
+      <y>880</y>
       <width>64</width>
       <height>15</height>
      </rect>
@@ -305,9 +305,9 @@
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>840</y>
-      <width>151</width>
+      <x>40</x>
+      <y>610</y>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
@@ -315,9 +315,9 @@
    <widget class="QTextEdit" name="textEdit_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>960</y>
-      <width>151</width>
+      <x>40</x>
+      <y>810</y>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
@@ -325,9 +325,9 @@
    <widget class="QTextEdit" name="textEdit_3">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>1020</y>
-      <width>151</width>
+      <x>40</x>
+      <y>910</y>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
@@ -335,9 +335,9 @@
    <widget class="QTextEdit" name="textEdit_4">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>900</y>
-      <width>151</width>
+      <x>40</x>
+      <y>710</y>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
@@ -345,8 +345,8 @@
    <widget class="QLabel" name="n_o_stock">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>910</y>
+      <x>70</x>
+      <y>680</y>
       <width>64</width>
       <height>15</height>
      </rect>
