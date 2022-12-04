@@ -295,7 +295,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="buy_price">
+    <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -308,7 +308,7 @@
       <string>매수 가격</string>
      </property>
     </widget>
-    <widget class="QDoubleSpinBox" name="doubleSpinBox">
+    <widget class="QDoubleSpinBox" name="buy_price">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -318,7 +318,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="n_o_stock">
+    <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -331,7 +331,7 @@
       <string>매수 수량</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox">
+    <widget class="QSpinBox" name="n_o_stock">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -341,7 +341,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="profit_price">
+    <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -354,7 +354,7 @@
       <string>익절 가격</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_2">
+    <widget class="QSpinBox" name="profit_price">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -364,7 +364,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="loss_price">
+    <widget class="QLabel" name="label_8">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -377,7 +377,7 @@
       <string>손절 가격</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_3">
+    <widget class="QSpinBox" name="loss_price">
      <property name="geometry">
       <rect>
        <x>10</x>
