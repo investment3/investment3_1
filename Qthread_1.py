@@ -124,6 +124,10 @@ class Thread1(QThread):
                 self.parent.stocklistTableWidget_2.item(index, 5).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 self.parent.stocklistTableWidget_2.item(index, 6).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
 
+                ############# 셀 크기를 입력값에 맞춰 조정
+                self.parent.stocklistTableWidget_2.resizeColumnsToContents()
+                self.parent.stocklistTableWidget_2.resizeRowsToContents()
+
             if sPrevNext == "2":
                 self.detail_acount_mystock(sPrevNext="2")  # 다음 페이지가 있으면 전부 검색한다.
             else:
