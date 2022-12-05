@@ -61,8 +61,6 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_1">
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -75,8 +73,6 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="label_3">
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -142,7 +138,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -152,13 +147,9 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
     </property>
-    <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>자동매매 종목 선정</string>
      </attribute>
-     <widget class="QTableWidget" name="buylast">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -218,9 +209,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>자동매매 조건</string>
      </attribute>
     </widget>
    </widget>
@@ -235,8 +224,6 @@
     </property>
     <property name="text">
      <string>불러오기</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="Save_Stock">
     <property name="geometry">
      <rect>
@@ -248,8 +235,6 @@
     </property>
     <property name="text">
      <string>종목저장</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="Del_Stock">
     <property name="geometry">
      <rect>
