@@ -9,7 +9,6 @@ class Thread2(QThread):
     def __init__(self, parent):     # 부모의 윈도우 창을 가져올 수 있다.
         super().__init__(parent)    # 부모의 윈도우 창을 초기화 한다.
         self.parent = parent        # 부모의 윈도우를 사용하기 위한 조건
-        self.parent = parent        # 부모의 윈도우를 사용하기 위한 조건
 
         ################## 키움서버 함수를 사용하기 위해서 kiwoom의 능력을 상속 받는다.
         self.k = Kiwoom()
@@ -25,21 +24,6 @@ class Thread2(QThread):
 
         ###### 기관외국인 평균가 가져오기
         self.C_K_F_class()
-
-
-        ###### 결과 붙이기(gui)
-        column_head = ["종목코드", "종목명", "위험도"]
-        colCount = len(column_head)
-        rowCount = len(self.k.acc_portfolio)
-        self.parent.Danger_wd.setColumnCount(colCount)  # 행 갯수
-        self.parent.Danger_wd.setRowCount(rowCount)  # 열 갯수 (종목 수)
-        self.parent.Danger_wd.setHorizontalHeaderLabels(column_head)  # 행의 이름 삽입
-        index2 = 0
-        for k in self.k.acc_portfolio.keys():
-            self.parent.Danger_wd.setItem(index2, 0, QTableWidgetItem(str(k)))
-            self.parent.Danger_wd.setItem(index2, 1, QTableWidgetItem(self.k.acc_portfolio[k]["종목명"]))
-            self.parent.Danger_wd.setItem(index2, 2, QTableWidgetItem(self.k.acc_portfolio[k]["위험도"]))
-            index2 += 1
 
 
     def C_K_F_class(self):

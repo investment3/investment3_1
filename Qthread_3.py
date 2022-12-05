@@ -1,4 +1,3 @@
-
 import os                                   # 현재 디렉토리 확인 기능
 from PyQt5.QtCore import *                  # 쓰레드 함수를 불러온다.
 from kiwoom import Kiwoom                   # 로그인을 위한 클래스
