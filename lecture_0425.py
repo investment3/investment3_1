@@ -8,6 +8,7 @@ from PyQt5.QtCore import *        # eventloop/스레드를 사용 할 수 있는
 from kiwoom import Kiwoom          # 키움증권 함수/공용 방 (싱글턴)
 from Qthread_1 import Thread1      # 계좌평가잔고내역 가져오기
 from Qthread_2 import Thread2      # 계좌 관리
+from Qthread_3 import Thread3      # 자동매매 시작
 
 #=================== 프로그램 실행 프로그램 =========================#
 
@@ -29,6 +30,22 @@ class Login_Machnine(QMainWindow, QWidget, form_class):       # QMainWindow : Py
         self.label_14.setText(str("총평가손익금액"))
         self.label_15.setText(str("총수익률(%)"))
 
+        ########## 종목 추가 하기 우측 정렬
+        self.searchItemTextEdit2.setAlignment(Qt.AlignRight)
+
+        ########## 더블 스핀 박스 우측정렬 및 소수점 삭제
+
+        self.buy_price.setAlignment(Qt.AlignRight)
+        self.buy_price.setDecimals(0)
+        self.n_o_stock.setAlignment(Qt.AlignRight)
+        self.n_o_stock.setDecimals(0)
+        self.profit_price.setAlignment(Qt.AlignRight)
+        self.profit_price.setDecimals(0)
+        self.loss_price.setAlignment(Qt.AlignRight)
+        self.loss_price.setDecimals(0)
+
+
+
         #### 기타 함수
         self.login_event_loop = QEventLoop()  # 이때 QEventLoop()는 block 기능을 가지고 있다.
 
@@ -39,7 +56,9 @@ class Login_Machnine(QMainWindow, QWidget, form_class):       # QMainWindow : Py
 
         #####이벤트 생성 및 진행
         self.call_account.clicked.connect(self.c_acc)         # 계좌정보가져오기
-        self.acc_manage.clicked.connect(self.a_manage)         # 계좌정보가져오기
+        self.acc_manage.clicked.connect(self.a_manage)        # 계좌관리하기
+        self.Auto_start.clicked.connect(self.auto)            # 자동매매 시작
+
 
         ################# 부가기능 1 : 종목선택하기 새로운 종목 추가 및 삭제
         self.k.kiwoom.OnReceiveTrData.connect(self.trdata_slot)           # 키움서버 데이터 받는 곳
@@ -129,7 +148,7 @@ class Login_Machnine(QMainWindow, QWidget, form_class):       # QMainWindow : Py
                     self.new_code = code
 
 
-        column_head = ["종목코드", "종목명", "현재가", "신용비율", "매수가", "매수수량", "익절가", "손절가"]
+        column_head = ["종목코드", "종목명", "현재가", "신용비율", "매수 가격", "매수 수량", "익절 가격", "손절 가격"]
         colCount = len(column_head)
         row_count = self.buylast.rowCount()
 
@@ -139,10 +158,11 @@ class Login_Machnine(QMainWindow, QWidget, form_class):       # QMainWindow : Py
 
         self.buylast.setItem(row_count, 0, QTableWidgetItem(str(self.new_code))) # 실제 입력값은 1행부터이나 0부터 들어가야 된다.
         self.buylast.setItem(row_count, 1, QTableWidgetItem(str(itemName)))
-        self.buylast.setItem(row_count, 4, QTableWidgetItem(str(self.buy_price.toPlainText())))
-        self.buylast.setItem(row_count, 5, QTableWidgetItem(str(self.n_o_stock.toPlainText())))
-        self.buylast.setItem(row_count, 6, QTableWidgetItem(str(self.profit_price.toPlainText())))
-        self.buylast.setItem(row_count, 7, QTableWidgetItem(str(self.loss_price.toPlainText())))
+        ################## 더블 스핀 박스 내용 읽기
+        self.buylast.setItem(row_count, 4, QTableWidgetItem(str(int(self.buy_price.value()))))
+        self.buylast.setItem(row_count, 5, QTableWidgetItem(str(int(self.n_o_stock.value()))))
+        self.buylast.setItem(row_count, 6, QTableWidgetItem(str(int(self.profit_price.value()))))
+        self.buylast.setItem(row_count, 7, QTableWidgetItem(str(int(self.loss_price.value()))))
 
 
         self.getItemInfo(self.new_code)
@@ -193,6 +213,14 @@ class Login_Machnine(QMainWindow, QWidget, form_class):       # QMainWindow : Py
         print("계좌 관리")
         h2 = Thread2(self)
         h2.start()
+
+
+    def auto(self):
+        print("자동매매 시작")
+        h3 = Thread3(self)
+        h3.start()
+
+
 
     def trdata_slot(self, sScrNo, sRQName, sTrCode, sRecordName, sPrevNext):
 
