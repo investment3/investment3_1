@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a727932-7b82-4b60-b3cb-3c269d8f0205" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/Selected_code.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kiwoom.py" beforeDir="false" afterPath="$PROJECT_DIR$/kiwoom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/mesu_database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/mesu_database.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
