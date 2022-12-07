@@ -26,6 +26,21 @@ class Thread2(QThread):
         self.C_K_F_class()
 
 
+        ###### 결과 붙이기(gui)
+        column_head = ["종목코드", "종목명", "위험도"]
+        colCount = len(column_head)
+        rowCount = len(self.k.acc_portfolio)
+        self.parent.Danger_wd.setColumnCount(colCount)  # 행 갯수
+        self.parent.Danger_wd.setRowCount(rowCount)  # 열 갯수 (종목 수)
+        self.parent.Danger_wd.setHorizontalHeaderLabels(column_head)  # 행의 이름 삽입
+        index2 = 0
+        for k in self.k.acc_portfolio.keys():
+            self.parent.Danger_wd.setItem(index2, 0, QTableWidgetItem(str(k)))
+            self.parent.Danger_wd.setItem(index2, 1, QTableWidgetItem(self.k.acc_portfolio[k]["종목명"]))
+            self.parent.Danger_wd.setItem(index2, 2, QTableWidgetItem(self.k.acc_portfolio[k]["위험도"]))
+            index2 += 1
+
+
     def C_K_F_class(self):
 
         code_list = []
