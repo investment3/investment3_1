@@ -1,4 +1,5 @@
-
+'''
+실시간 분봉 탐색 파일
 '''
 import sys
 from PyQt5.QAxContainer import *
@@ -99,6 +100,6 @@ if __name__ == "__main__":
 
     app.exec_()
 
-    '''
+    
 
 
