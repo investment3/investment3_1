@@ -1,28 +1,22 @@
-from PyQt5.QtCore import *         # 쓰레드 함수를 불러온다.
-from kiwoom import Kiwoom          # 로그인을 위한 클래스
-from PyQt5.QtWidgets import *      #PyQt import
+from PyQt5.QtCore import *
+from kiwoom import Kiwoom
+from PyQt5.QtWidgets import *
 
 
 class Thread1(QThread):
-    def __init__(self, parent):   # 부모의 윈도우 창을 가져올 수 있다.
-        super().__init__(parent)  # 부모의 윈도우 창을 초기화 한다.
-        self.parent = parent      # 부모의 윈도우를 사용하기 위한 조건
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
 
 
-        ################## 키움서버 함수를 사용하기 위해서 kiwoom의 능력을 상속 받는다.
         self.k = Kiwoom()
-        ##################
 
-        ################## 사용되는 변수
-        self.Acc_Screen = "1000"         # 계좌평가잔고내역을 받기위한 스크린
+        self.Acc_Screen = "1000"
 
-        ###### 슬롯
-        self.k.kiwoom.OnReceiveTrData.connect(self.trdata_slot)  # 내가 알고 있는 Tr 슬롯에다 특정 값을 던져 준다.
-        ###### EventLoop
-        self.detail_account_info_event_loop = QEventLoop()  # 계좌 이벤트루프
-        ###### 계좌정보 가져오기
-        self.getItemList()               # 종목 이름 받아오기
-        self.detail_acount_mystock()     # 계좌평가잔고내역 가져오기
+        self.k.kiwoom.OnReceiveTrData.connect(self.trdata_slot)
+        self.detail_account_info_event_loop = QEventLoop()
+        self.getItemList()
+        self.detail_acount_mystock()
 
 
     def getItemList(self):
@@ -69,7 +63,6 @@ class Thread1(QThread):
             totalEstimateProfit = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, 0, "총평가손익금액"))
             total_profit_loss_rate = float(self.k.kiwoom.dynamicCall("GetCommData(String, String, int, String)", sTrCode, sRQName, 0, "총수익률(%)"))
 
-            #################################### 텍스트 라벨에 집어 넣기
 
             self.parent.label_1.setText(str(format(totalBuyingPrice, ",")))
             self.parent.label_2.setText(str(format(currentTotalPrice, ",")))
@@ -77,7 +70,6 @@ class Thread1(QThread):
             self.parent.label_4.setText(str(format(totalEstimateProfit, ",")))
             self.parent.label_5.setText(str(format(total_profit_loss_rate, ",")))
 
-            #################################################################
 
 
             for index in range(rowCount):
@@ -108,14 +100,12 @@ class Thread1(QThread):
 
                 self.parent.stocklistTableWidget_2.setItem(index, 0, QTableWidgetItem(str(itemCode)))
                 self.parent.stocklistTableWidget_2.setItem(index, 1, QTableWidgetItem(str(itemName)))
-                # 천단위 구분 콤마 사용
                 self.parent.stocklistTableWidget_2.setItem(index, 2, QTableWidgetItem(str(format(amount, ","))))
                 self.parent.stocklistTableWidget_2.setItem(index, 3, QTableWidgetItem(str(format(buyingPrice, ","))))
                 self.parent.stocklistTableWidget_2.setItem(index, 4, QTableWidgetItem(str(format(currentPrice, ","))))
                 self.parent.stocklistTableWidget_2.setItem(index, 5, QTableWidgetItem(str(format(estimateProfit, ","))))
                 self.parent.stocklistTableWidget_2.setItem(index, 6, QTableWidgetItem(str(format(profitRate, ","))))
 
-                ############# 좌측 정렬을 우측 정렬로 교체
                 self.parent.stocklistTableWidget_2.item(index, 0).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 self.parent.stocklistTableWidget_2.item(index, 1).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 self.parent.stocklistTableWidget_2.item(index, 2).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
@@ -124,11 +114,10 @@ class Thread1(QThread):
                 self.parent.stocklistTableWidget_2.item(index, 5).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 self.parent.stocklistTableWidget_2.item(index, 6).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
 
-                ############# 셀 크기를 입력값에 맞춰 조정
                 self.parent.stocklistTableWidget_2.resizeColumnsToContents()
                 self.parent.stocklistTableWidget_2.resizeRowsToContents()
 
             if sPrevNext == "2":
-                self.detail_acount_mystock(sPrevNext="2")  # 다음 페이지가 있으면 전부 검색한다.
+                self.detail_acount_mystock(sPrevNext="2")
             else:
-                self.detail_account_info_event_loop.exit()  # 끊어 준다.
+                self.detail_account_info_event_loop.exit()
